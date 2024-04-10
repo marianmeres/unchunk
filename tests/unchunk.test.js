@@ -17,6 +17,8 @@ suite.test('unchunk', () => {
 	// helper to explode string into 3 char chunks
 	const toChunks = (s) => s.match(/[\s\S]{1,3}/g);
 
+	const poo = '💩'; // poo.length === 2
+
 	// prettier-ignore
 	[
 		// single chunk
@@ -28,11 +30,17 @@ suite.test('unchunk', () => {
 		{ chunks: [`${D}1${D}`],                      expected: ',1' },
 		// mulitple chunks          
 		{ chunks: [D, D, D],                          expected: ',,' },
-		{ chunks: [D, `1`, D],                        expected: ',1' },
+		{ chunks: [D, `1`, D, `2`, D],                expected: ',1,2' },
 		{ chunks: [D, `12`, `3`, D],                  expected: ',123' },
 		// chunked delimiter  
 		{ chunks: ['1', '2\n', '\n', '34\n\n'],       expected: '12,34' },
 		{ chunks: ['1\n', '2\n', '\n34', '\n', '\n'], expected: '1\n2,34' },
+		// unicode emoji delimiter
+		{
+			chunks: ['pile', '💩', `of${poo[0]}`, `${poo[1]}poo${poo[0]}`, poo[1]],
+			expected: 'pile,of,poo',
+			delimiter: '💩',
+		},
 		// json
 		{
 			// if not pretty-printed, we can use the human readable "\n\n"
