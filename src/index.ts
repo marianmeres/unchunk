@@ -1,4 +1,3 @@
-
 export function createUnchunk(
 	onMessage: (message: string) => void,
 	recordDelimiter: string = createUnchunk.DELIMITER
@@ -7,12 +6,14 @@ export function createUnchunk(
 	let delimiterCursor = -1;
 
 	// sanity checks
-	if (typeof onMessage !== 'function')
+	if (typeof onMessage !== 'function') {
 		throw new TypeError('Expecting callback as a second argument.');
-    
-	if (typeof recordDelimiter !== 'string' || !recordDelimiter.length)
-        throw new TypeError('Expecting delimiter to be a not empty string.');
-    
+	}
+
+	if (typeof recordDelimiter !== 'string' || !recordDelimiter.length) {
+		throw new TypeError('Expecting delimiter to be a not empty string.');
+    }
+
 	//
 	return (chunk: string) => {
 		if (typeof chunk !== 'string')
@@ -49,7 +50,7 @@ export function createUnchunk(
 			}
 		}
 	};
-};
+}
 
 // https://en.wikipedia.org/wiki/C0_and_C1_control_codes#Field_separators
 createUnchunk.DELIMITER = '\x1E';
