@@ -21,7 +21,7 @@ suite.test('unchunk', () => {
 	[
 		// single chunk
 		{ chunks: [``],                               expected: '' },
-		// { chunks: [D],                                expected: '' },
+		{ chunks: [D],                                expected: '' },
 		{ chunks: [`1${D}`],                          expected: '1' },
 		{ chunks: [`1`],                              expected: '' }, // not ended (no trailing record delimiter)
 		{ chunks: [`${D}1`],                          expected: '' }, // not ended (no trailing record delimiter)
