@@ -12,7 +12,7 @@ While the client's [`reader.read`](https://developer.mozilla.org/en-US/docs/Web/
 
 Note that the chunked data must have a _delimiter_ appended at the end for this to work. And of course, both sides (client and server) must use the same _delimiter_.
 
-You can use any _delimiter_ (eg `,` `\n`, `\r\n`, `\n\n`, `💩`, ...) unless it does not conflict with the data. By default it uses single [ASCII Record Separator](https://en.wikipedia.org/wiki/C0_and_C1_control_codes#Field_separators) char `\x1E` which should be safe for general usage.
+You can use any _delimiter_ (eg `,`, `\n`, `\r\n`, `\n\n`, `💩`, ...) unless it does not conflict with the data. By default it uses single [ASCII Record Separator](https://en.wikipedia.org/wiki/C0_and_C1_control_codes#Field_separators) char `\x1E` which should be safe for general usage.
 
 ## Example
 
