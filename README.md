@@ -10,25 +10,32 @@ While the client's [`reader.read`](https://developer.mozilla.org/en-US/docs/Web/
 
 ## Delimiter 
 
-Note that the chunked data must have a _delimiter_ appended to the end for this to work. And of course, both sides (client and server) must use the same _delimiter_. 
+Note that the chunked data must have a _delimiter_ appended at the end for this to work. And of course, both sides (client and server) must use the same _delimiter_. 
 
 You can use any _delimiter_ (eg `,` or `\n`, ...) unless it does not conflict with the data. By default it uses [ASCII Record Separator](https://en.wikipedia.org/wiki/C0_and_C1_control_codes#Field_separators) `\x1E` which should be safe for general usage.
 
 ## Example
 
+Signature:
+
 ```typescript
-createUnchunk(onData: (data: any) => void, recordDelimiter: string = createUnchunk.DELIMITER): (chunk: string) => void;
+createUnchunk(
+    onData: (data: any) => void, 
+    recordDelimiter: string = createUnchunk.DELIMITER
+): (chunk: string) => void;
 ```
+
+Test example:
 
 ```javascript
 import { createUnchunk } from '@marianmeres/unchunk';
 
 const messages = [];
 
-// we're using custom "\n\n" delimiter here
+// we're using a custom "\n\n" delimiter here
 const unchunk = createUnchunk((d) => messages.push(d), '\n\n');
 
-// Note that the delimiter is split into multiple parts here for illustration
+// Note that the delimiter is split into multiple chunks here for illustration
 const chunks = [ '1', '2\n', '\n', '34\n\n' ]; 
 
 // actual work
