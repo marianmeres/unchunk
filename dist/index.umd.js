@@ -10,8 +10,8 @@
         // sanity checks
         if (typeof onMessage !== 'function')
             throw new TypeError('Expecting callback as a second argument.');
-        if (!recordDelimiter.length)
-            throw new TypeError(`Delimiter must not be empty.`);
+        if (typeof recordDelimiter !== 'string' || !recordDelimiter.length)
+            throw new TypeError('Expecting delimiter to be a not empty string.');
         //
         return (chunk) => {
             if (typeof chunk !== 'string')
