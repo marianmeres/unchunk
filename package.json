@@ -1,0 +1,52 @@
+{
+	"name": "@marianmeres/unchunk",
+	"version": "1.0.0",
+	"description": "",
+	"type": "module",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"browser": "./dist/index.umd.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		"require": "./dist/index.cjs",
+		"import": "./dist/index.js"
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"clean": "rimraf dist/*",
+		"prettier": "prettier --write \"{src,tests}/**/*.{js,ts,json}\"",
+		"release": "release -v minor",
+		"release:patch": "release -v patch",
+		"test": "test-runner",
+		"test:watch": "nodemon -q -w \"src/**/*.*\" -w \"tests/**/*.*\" -x test-runner --",
+		"dev": "npm run clean && rollup -c -w",
+		"build": "npm run clean && rollup -c"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/marianmeres/unchunk.git"
+	},
+	"author": "Marian Meres <marian@meres.sk>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/marianmeres/unchunk/issues"
+	},
+	"homepage": "https://github.com/marianmeres/unchunk#readme",
+	"devDependencies": {
+		"@marianmeres/release": "^1.0.0",
+		"@marianmeres/test-runner": "^2.0.13",
+		"@rollup/plugin-commonjs": "^25.0.7",
+		"@rollup/plugin-node-resolve": "^15.2.3",
+		"@rollup/plugin-terser": "^0.4.4",
+		"@rollup/plugin-typescript": "^11.1.6",
+		"@types/node": "^20.11.20",
+		"nodemon": "^3.0.2",
+		"prettier": "^3.2.5",
+		"rimraf": "^3.0.2",
+		"rollup": "^4.14.1",
+		"tslib": "^2.6.2",
+		"typescript": "^5.3.3"
+	}
+}
