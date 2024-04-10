@@ -20,7 +20,7 @@ Signature:
 
 ```typescript
 createUnchunk(
-    onData: (data: any) => void, 
+    onMessage: (message: string) => void, 
     recordDelimiter: string = createUnchunk.DELIMITER
 ): (chunk: string) => void;
 ```

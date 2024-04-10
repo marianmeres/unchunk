@@ -1,10 +1,10 @@
 'use strict';
 
-function createUnchunk(onData, recordDelimiter = createUnchunk.DELIMITER) {
+function createUnchunk(onMessage, recordDelimiter = createUnchunk.DELIMITER) {
     let buffer = '';
     let delimiterCursor = -1;
     // sanity checks
-    if (typeof onData !== 'function')
+    if (typeof onMessage !== 'function')
         throw new TypeError('Expecting callback as a second argument.');
     if (!recordDelimiter.length)
         throw new TypeError(`Delimiter must not be empty.`);
@@ -27,7 +27,7 @@ function createUnchunk(onData, recordDelimiter = createUnchunk.DELIMITER) {
                 // if we've reached the end of the delimiter...
                 if (recordDelimiter.length === delimiterCursor + 1) {
                     // emit buffered data excluding the trailing delimiter
-                    onData(buffer.slice(0, -recordDelimiter.length));
+                    onMessage(buffer.slice(0, -recordDelimiter.length));
                     // and reset internal state
                     buffer = '';
                     delimiterCursor = -1;
