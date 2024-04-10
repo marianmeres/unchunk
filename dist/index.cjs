@@ -8,12 +8,13 @@ function createUnchunk(onMessage, recordDelimiter = createUnchunk.DELIMITER) {
         throw new TypeError('Expecting callback as a second argument.');
     }
     if (typeof recordDelimiter !== 'string' || !recordDelimiter.length) {
-        throw new TypeError('Expecting delimiter to be a not empty string.');
+        throw new TypeError('Expecting the delimiter to be a not empty string.');
     }
     //
     return (chunk) => {
-        if (typeof chunk !== 'string')
-            throw new TypeError(`Expecting chunk to be a string (got ${typeof chunk}).`);
+        if (typeof chunk !== 'string') {
+            throw new TypeError(`Expecting the chunk to be a string (got '${typeof chunk}').`);
+        }
         for (let cursor = 0; cursor < chunk.length; ++cursor) {
             const char = chunk[cursor];
             // simply just appending chunk chars to buffer...
