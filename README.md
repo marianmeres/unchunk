@@ -18,7 +18,7 @@ You can use any _delimiter_ (eg `,`, `\n`, `\r\n`, `\n\n`, `💩`, ...) unless i
 
 Installation:
 
-```
+```bash
 npm i @marianmeres/unchunk
 ```
 
