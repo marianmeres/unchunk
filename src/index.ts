@@ -22,7 +22,6 @@ export function createUnchunk(
 
 		for (let cursor = 0; cursor < chunk.length; ++cursor) {
 			const char = chunk[cursor];
-			// console.log('char', char);
 
 			// simply just appending chunk chars to buffer...
 			buffer += char;

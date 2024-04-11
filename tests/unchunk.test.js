@@ -47,7 +47,7 @@ suite.test('unchunk', () => {
 			chunks: [...toChunks(jsonString), D],
 			expected: jsonString,
 		},
-		// for pretty-printed json chunks we must not use "\n\n" as it would colide...
+		// for pretty-printed json chunks we must not use "\n\n" as it would collide...
 		// (we still could use "\r\n\n" for example...)
 		{
 			chunks: [...toChunks(jsonStringPretty), createUnchunk.DELIMITER],
