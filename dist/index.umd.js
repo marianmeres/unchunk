@@ -9,10 +9,10 @@
         let delimiterCursor = -1;
         // sanity checks
         if (typeof onMessage !== 'function') {
-            throw new TypeError('Expecting callback as a second argument.');
+            throw new TypeError('Expecting `onMessage` callback as a first argument.');
         }
         if (typeof recordDelimiter !== 'string' || !recordDelimiter.length) {
-            throw new TypeError('Expecting the delimiter to be a not empty string.');
+            throw new TypeError('The delimiter is expected to be a non-empty string.');
         }
         //
         return (chunk) => {
