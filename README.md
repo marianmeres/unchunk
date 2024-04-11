@@ -6,15 +6,21 @@ Little DRY utility for reconstructing chunks into messages.
 
 A server is streaming **multiple messages** (eg `csv` rows, `json` objects...) via `Transfer-Encoding: 'chunked'`...
 
-While the client's [`reader.read`](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Using_readable_streams) does glue the low level transport chunks for us, we still need to restore the higher level "domain messages". This is where this utility helps.
+While the client's [`reader.read`](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Using_readable_streams) does glue the low level transport chunks for us, we still need to restore the higher level "domain messages". This is where this tool comes in handy.
 
 ## Delimiter
 
-Note that the chunked data must have a _delimiter_ appended at the end for this to work. And of course, both sides (client and server) must use the same _delimiter_.
+The chunked data must have a _delimiter_ appended at the end for this to work. And of course, both sides (client and server) must use the same _delimiter_.
 
 You can use any _delimiter_ (eg `,`, `\n`, `\r\n`, `\n\n`, `💩`, ...) unless it does not conflict with the data. By default it uses single [ASCII Record Separator](https://en.wikipedia.org/wiki/C0_and_C1_control_codes#Field_separators) char `\x1E` which should be safe for general usage.
 
-## Example
+## Usage
+
+Installation:
+
+```
+npm i @marianmeres/unchunk
+```
 
 Signature:
 
@@ -25,7 +31,7 @@ createUnchunk(
 ): (chunk: string) => void;
 ```
 
-Test example:
+Illustration example:
 
 ```javascript
 import { createUnchunk } from '@marianmeres/unchunk';
