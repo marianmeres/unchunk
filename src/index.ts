@@ -14,16 +14,17 @@ export function createUnchunk(
 		throw new TypeError('The delimiter is expected to be a non-empty string.');
 	}
 
-	//
+	// return the `unchunk` worker fn
 	return (chunk: string) => {
 		if (typeof chunk !== 'string') {
 			throw new TypeError(`Expecting the chunk to be a string (got '${typeof chunk}').`);
 		}
 
+		// walk the chunk...
 		for (let cursor = 0; cursor < chunk.length; ++cursor) {
 			const char = chunk[cursor];
 
-			// simply just appending chunk chars to buffer...
+			// simply appending chunk char to buffer...
 			buffer += char;
 
 			// unless delimiter is reached
