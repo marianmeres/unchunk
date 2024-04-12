@@ -35,6 +35,8 @@ suite.test('unchunk', () => {
 		// chunked delimiter  
 		{ chunks: ['1', '2\n', '\n', '34\n\n'],       expected: '12,34' },
 		{ chunks: ['1\n', '2\n', '\n34', '\n', '\n'], expected: '1\n2,34' },
+		// readme example
+		{ chunks: ['1', '2\n', '\n3', '4', '\n', '\n56\n\n'], expected: '12,34,56'},
 		// unicode emoji delimiter
 		{
 			chunks: ['pile', '💩', `of${poo[0]}`, `${poo[1]}poo${poo[0]}`, poo[1]],

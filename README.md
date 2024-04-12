@@ -27,7 +27,7 @@ Signature:
 ```typescript
 createUnchunk(
     onMessage: (message: string) => void,
-    recordDelimiter: string = createUnchunk.DELIMITER
+    messageDelimiter: string = createUnchunk.DELIMITER
 ): (chunk: string) => void;
 ```
 
@@ -42,10 +42,12 @@ const messages = [];
 const unchunk = createUnchunk((d) => messages.push(d), '\n\n');
 
 // Note that the delimiter is split into multiple chunks here for illustration
-const chunks = ['1', '2\n', '\n', '34\n\n'];
+// (to simulate real world scenarios)
+const chunks = ['1', '2\n', '\n3', '4', '\n', '\n56\n\n'];
 
 // actual work
 chunks.forEach(unchunk);
 
-assert(messages.join() === '12,34');
+// we have successfully reconstructed 3 messages
+assert(messages.join() === '12,34,56');
 ```

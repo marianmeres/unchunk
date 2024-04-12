@@ -1,11 +1,11 @@
-function createUnchunk(onMessage, recordDelimiter = createUnchunk.DELIMITER) {
+function createUnchunk(onMessage, messageDelimiter = createUnchunk.DELIMITER) {
     let buffer = '';
     let delimiterCursor = -1;
     // sanity checks
     if (typeof onMessage !== 'function') {
         throw new TypeError('Expecting `onMessage` callback as a first argument.');
     }
-    if (typeof recordDelimiter !== 'string' || !recordDelimiter.length) {
+    if (typeof messageDelimiter !== 'string' || !messageDelimiter.length) {
         throw new TypeError('The delimiter is expected to be a non-empty string.');
     }
     //
@@ -20,15 +20,15 @@ function createUnchunk(onMessage, recordDelimiter = createUnchunk.DELIMITER) {
             // unless delimiter is reached
             if (
             // maybe start of the delimiter, or...
-            (delimiterCursor === -1 && char === recordDelimiter[0]) ||
+            (delimiterCursor === -1 && char === messageDelimiter[0]) ||
                 // still inside of the multichar delimiter
-                (delimiterCursor > -1 && char === recordDelimiter[delimiterCursor + 1])) {
+                (delimiterCursor > -1 && char === messageDelimiter[delimiterCursor + 1])) {
                 // move internal pointer...
                 delimiterCursor++;
                 // if we've reached the end of the delimiter...
-                if (recordDelimiter.length === delimiterCursor + 1) {
+                if (messageDelimiter.length === delimiterCursor + 1) {
                     // emit buffered data excluding the trailing delimiter
-                    onMessage(buffer.slice(0, -recordDelimiter.length));
+                    onMessage(buffer.slice(0, -messageDelimiter.length));
                     // and reset internal state
                     buffer = '';
                     delimiterCursor = -1;
