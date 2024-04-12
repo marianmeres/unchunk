@@ -1,6 +1,6 @@
 {
 	"name": "@marianmeres/unchunk",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Utility for reconstructing chunks into messages.",
 	"type": "module",
 	"main": "./dist/index.cjs",
