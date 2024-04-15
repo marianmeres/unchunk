@@ -1,6 +1,6 @@
 # @marianmeres/unchunk
 
-Little DRY utility for reconstructing chunks into messages.
+Utility for reconstructing chunks into messages.
 
 ## Use case
 
